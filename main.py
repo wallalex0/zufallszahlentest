@@ -125,7 +125,7 @@ def generator_random_org(amount, start, end):
 
     print(f"Getting {amount} random numbers from random.org, in range from {start} to {end}.")
     try:
-        header = {'User-Agent': 'alexander dot aw64 at gmail dot com'}
+        header = {'User-Agent': 'alexander at jwallrodt dot com'}
         request = requests.get(
             url=f"https://www.random.org/integers/?num={amount}&min={start}&max={end}&col=1&base=10&format=plain&rnd=new",
             headers=header)
