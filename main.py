@@ -2,10 +2,38 @@ import datetime
 import random
 import requests
 import numpy
+import matplotlib.pyplot as plot
 
 
 def get_curr_timestamp():
     return str(datetime.datetime.now().replace(microsecond=0))
+
+
+def get_plot():
+
+    numbers = get_random_numbers("lcg", 100000, 0, 1000)
+
+    numbers_x = []
+    numbers_y = []
+    numbers_z = []
+
+    fig = plot.figure()
+    ax = fig.add_subplot(projection='3d')
+
+    i = 0
+    while i < len(numbers) - 3:
+        numbers_x.append(int(numbers[i + 0]))
+        numbers_y.append(int(numbers[i + 1]))
+        numbers_z.append(int(numbers[i + 2]))
+        i += 3
+
+    ax.scatter(numbers_x, numbers_y, numbers_z, marker=".", s=1)
+
+    ax.set_xlabel('X Label')
+    ax.set_ylabel('Y Label')
+    ax.set_zlabel('Z Label')
+
+    plot.show()
 
 
 def get_random_numbers(generator, amount, start, end, write=False):
@@ -118,11 +146,12 @@ def generator_random_org(amount, start, end):
         return None
 
     # Quota check, to be done
-    quota = False
+    quota = True
     if not quota:
         print("Quota not implemented.")
         return None
 
+    quota_exceeded_random_org()
     print(f"Getting {amount} random numbers from random.org, in range from {start} to {end}.")
     try:
         header = {'User-Agent': 'alexander at jwallrodt dot com'}
@@ -130,6 +159,7 @@ def generator_random_org(amount, start, end):
             url=f"https://www.random.org/integers/?num={amount}&min={start}&max={end}&col=1&base=10&format=plain&rnd=new",
             headers=header)
         if request.status_code == 200:
+            quota_exceeded_random_org()
             return request.text.split("\n")
         elif request.status_code == 503:
             if quota_exceeded_random_org():
@@ -143,10 +173,12 @@ def generator_random_org(amount, start, end):
 
 def run():
 
-    quota_exceeded_random_org()
+    # quota_exceeded_random_org()
+    #
+    # print(get_random_numbers("random_org", input("Amount?\n"), input("Start?\n"), input("End?\n"), True))
+    # quota_exceeded_random_org()
 
-    print(get_random_numbers("random_org", input("Amount?\n"), input("Start?\n"), input("End?\n"), True))
-    quota_exceeded_random_org()
+    get_plot()
 
 
 run()
