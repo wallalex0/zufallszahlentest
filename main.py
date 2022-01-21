@@ -188,8 +188,7 @@ def run():
     #
     # print(get_random_numbers("random_org", input("Amount?\n"), input("Start?\n"), input("End?\n"), True))
     # quota_exceeded_random_org()
-
-    get_plot_3D("random_lib", 10000)
+    get_plot_3D("lcg", 10000)
     get_plot_2D("lcg", 100000)
 
 
