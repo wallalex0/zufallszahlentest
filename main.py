@@ -11,7 +11,7 @@ def get_curr_timestamp():
 
 def get_plot():
 
-    numbers = get_random_numbers("lcg", 100000, 0, 1000)
+    numbers = get_random_numbers("lcg", 100000)
 
     numbers_x = []
     numbers_y = []
@@ -36,7 +36,7 @@ def get_plot():
     plot.show()
 
 
-def get_random_numbers(generator, amount, start, end, write=False):
+def get_random_numbers(generator, amount, write=False):
     result = []
 
     try:
@@ -45,35 +45,19 @@ def get_random_numbers(generator, amount, start, end, write=False):
         print("Incorrect amount value provided.")
         return None
 
-    try:
-        start = int(start)
-    except Exception:
-        print("Incorrect start value provided.")
-        return None
-
-    try:
-        end = int(end)
-    except Exception:
-        print("Incorrect end value provided.")
-        return None
-
     if amount < 1:
         print("Provided too low amount.")
         return None
 
-    if end < start:
-        print("Provided false range parameters.")
-        return None
-
     if generator == "random_lib":
-        result = generator_random(amount, start, end)
+        result = generator_random(amount)
     if generator == "numpy_lib":
-        result = generator_numpy(amount, start, end)
+        result = generator_numpy(amount)
     if generator == "lcg":
-        result = generator_lcg(amount, start, end)
-    if generator == "random_org":
-        write = True
-        result = generator_random_org(amount, start, end)
+        result = generator_lcg(amount)
+    # if generator == "random_org":
+    #     write = True
+    #     result = generator_random_org(amount)
 
     if write:
         try:
@@ -89,28 +73,28 @@ def get_random_numbers(generator, amount, start, end, write=False):
 
 
 # Random generator of the random library
-def generator_random(amount, start, end):
+def generator_random(amount):
     results = []
-    print(f"Getting {amount} random numbers from random.randint(), in range from {start} to {end}.")
+    print(f"Getting {amount} random numbers from random.random().")
     for i in range(amount):
-        results.append(random.randint(start, end))
+        results.append(random.random())
     return results
 
 
 # Random generator of the numpy library
-def generator_numpy(amount, start, end):
-    print(f"Getting {amount} random numbers from numpy.random.randint(), in range from {start} to {end}.")
-    return numpy.random.randint(start, end, size=amount)
+def generator_numpy(amount):
+    print(f"Getting {amount} random numbers from numpy.random.random().")
+    return numpy.random.random(size=amount)
 
 
 # LCG generator from the course
-def generator_lcg(amount, start, end):
+def generator_lcg(amount):
     results = []
-    print(f"Getting {amount} random numbers from a LCG, in range from {start} to {end}.")
-    n, a, k, c = 0, 16807 / end - start, end - start + 1, 3 / end - start
+    print(f"Getting {amount} random numbers from a LCG.")
+    n, a, k, c = 0, 16807,  1, 3
     for i in range(amount):
         n = (a * n + c) % k
-        results.append(start + int(n))
+        results.append(n)
     return results
 
 
@@ -178,7 +162,10 @@ def run():
     # print(get_random_numbers("random_org", input("Amount?\n"), input("Start?\n"), input("End?\n"), True))
     # quota_exceeded_random_org()
 
-    get_plot()
+    # get_plot()
+
+    print(numpy.random.random())
+    print(random.random())
 
 
 run()
