@@ -9,29 +9,54 @@ def get_curr_timestamp():
     return str(datetime.datetime.now().replace(microsecond=0))
 
 
-def get_plot():
-
-    numbers = get_random_numbers("lcg", 100000)
+def get_plot_3D(generator, amount):
+    numbers = get_random_numbers(generator, amount)
 
     numbers_x = []
     numbers_y = []
     numbers_z = []
 
     fig = plot.figure()
+
     ax = fig.add_subplot(projection='3d')
 
     i = 0
     while i < len(numbers) - 3:
-        numbers_x.append(int(numbers[i + 0]))
-        numbers_y.append(int(numbers[i + 1]))
-        numbers_z.append(int(numbers[i + 2]))
+        numbers_x.append(numbers[i + 0])
+        numbers_y.append(numbers[i + 1])
+        numbers_z.append(numbers[i + 2])
         i += 3
 
     ax.scatter(numbers_x, numbers_y, numbers_z, marker=".", s=1)
 
-    ax.set_xlabel('X Label')
-    ax.set_ylabel('Y Label')
-    ax.set_zlabel('Z Label')
+    ax.set_xlabel('X Feld')
+    ax.set_ylabel('Y Feld')
+    ax.set_zlabel('Z Feld')
+
+    plot.show()
+
+
+def get_plot_2D(generator, amount):
+
+    numbers = get_random_numbers(generator, amount)
+
+    numbers_x = []
+    numbers_y = []
+
+    fig = plot.figure()
+
+    ax = fig.add_subplot()
+
+    i = 0
+    while i < len(numbers) - 2:
+        numbers_x.append(numbers[i + 0])
+        numbers_y.append(numbers[i + 1])
+        i += 2
+
+    ax.scatter(numbers_x, numbers_y, marker=".", s=0.5)
+
+    ax.set_xlabel('X Feld')
+    ax.set_ylabel('Y Feld')
 
     plot.show()
 
@@ -83,15 +108,18 @@ def generator_random(amount):
 
 # Random generator of the numpy library
 def generator_numpy(amount):
+    results = []
     print(f"Getting {amount} random numbers from numpy.random.random().")
-    return numpy.random.random(size=amount)
+    for i in range(amount):
+        results.append(numpy.random.random())
+    return results
 
 
 # LCG generator from the course
 def generator_lcg(amount):
     results = []
     print(f"Getting {amount} random numbers from a LCG.")
-    n, a, k, c = 0, 16807,  1, 3
+    a, n, c, k = 24298, 0, 99991, 199017
     for i in range(amount):
         n = (a * n + c) % k
         results.append(n)
@@ -130,7 +158,7 @@ def generator_random_org(amount, start, end):
         return None
 
     # Quota check, to be done
-    quota = True
+    quota = False
     if not quota:
         print("Quota not implemented.")
         return None
@@ -156,16 +184,13 @@ def generator_random_org(amount, start, end):
 
 
 def run():
-
     # quota_exceeded_random_org()
     #
     # print(get_random_numbers("random_org", input("Amount?\n"), input("Start?\n"), input("End?\n"), True))
     # quota_exceeded_random_org()
 
-    # get_plot()
-
-    print(numpy.random.random())
-    print(random.random())
+    get_plot_3D("random_lib", 10000)
+    get_plot_2D("lcg", 100000)
 
 
 run()
