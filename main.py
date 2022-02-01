@@ -31,9 +31,11 @@ def get_plot_3D(generator, amount, old=False, write=False):
     numbers_y = []
     numbers_z = []
 
-    fig = plot.figure()
+    title = f"Random numbers by {generator}, with an amount of {amount} numbers"
 
-    ax = fig.add_subplot(projection='3d')
+    figure = plot.figure(num=title)
+
+    axis = figure.add_subplot(projection='3d')
 
     i = 0
     while i < len(numbers) - 3:
@@ -42,11 +44,11 @@ def get_plot_3D(generator, amount, old=False, write=False):
         numbers_z.append(numbers[i + 2])
         i += 3
 
-    ax.scatter(numbers_x, numbers_y, numbers_z, marker=".", s=1)
+    axis.scatter(numbers_x, numbers_y, numbers_z, marker=".", s=1)
 
-    ax.set_xlabel('X Feld')
-    ax.set_ylabel('Y Feld')
-    ax.set_zlabel('Z Feld')
+    axis.set_xlabel('X Feld')
+    axis.set_ylabel('Y Feld')
+    axis.set_zlabel('Z Feld')
 
     plot.show()
 
@@ -66,9 +68,11 @@ def get_plot_2D(generator, amount, old=False, write=False):
     numbers_x = []
     numbers_y = []
 
-    fig = plot.figure()
+    title = f"Random numbers by {generator}, with an amount of {amount} numbers"
 
-    ax = fig.add_subplot()
+    figure = plot.figure(num=title)
+
+    axis = figure.add_subplot()
 
     i = 0
     while i < len(numbers) - 2:
@@ -76,10 +80,10 @@ def get_plot_2D(generator, amount, old=False, write=False):
         numbers_y.append(numbers[i + 1])
         i += 2
 
-    ax.scatter(numbers_x, numbers_y, marker=".", s=0.5)
+    axis.scatter(numbers_x, numbers_y, marker=".", s=0.5)
 
-    ax.set_xlabel('X Feld')
-    ax.set_ylabel('Y Feld')
+    axis.set_xlabel('X Feld')
+    axis.set_ylabel('Y Feld')
 
     plot.show()
 
@@ -147,7 +151,7 @@ def get_old_random_numbers():
                 stripped_line = line.strip("\n")
                 if stripped_line != "":
                     try:
-                        result.append(int(stripped_line))
+                        result.append(float(stripped_line))
                     except Exception as e:
                         print("An error occurred: " + str(e))
                         return None
