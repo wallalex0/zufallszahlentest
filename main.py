@@ -6,6 +6,11 @@ import requests
 import os
 
 
+def get_user_mail():
+    # Please paste here your email address in order to use the random.org api
+    return "alexander dot aw64 at gmail dot com"
+
+
 def get_timestamp():
     return str(datetime.datetime.now().replace(microsecond=0))
 
