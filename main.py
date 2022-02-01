@@ -220,26 +220,20 @@ def generator_random_org(amount):
     if amount > 1e4:
         print("Amount value is too high, random.org can only process an amount up to 10000.")
         return None
-    if start < -1e9 or start > 1e9 or end < -1e9 or end > 1e9:
-        print("To broad range, random.org does only process numbers between -1e9 and 1e9.")
+
+    # Quota check
+    quota = quota_exceeded_random_org()
+    if quota:
         return None
 
-    # Quota check, to be done
-    quota = False
-    if not quota:
-        print("Quota not implemented.")
-        return None
-
-    quota_exceeded_random_org()
-    print(f"Getting {amount} random numbers from random.org, in range from {start} to {end}.")
+    print(f"Getting {amount} random numbers from random.org.")
     try:
         header = {'User-Agent': f'{get_user_mail()}'}
         request = requests.get(
-            url=f"https://www.random.org/integers/?num={amount}&min={start}&max={end}&col=1&base=10&format=plain&rnd=new",
+            url=f"https://www.random.org/integers/?num={amount}&min=0&max=1000000000&col=1&base=10&format=plain&rnd=new",
             headers=header)
         if request.status_code == 200:
-            quota_exceeded_random_org()
-            return request.text.split("\n")
+            results = request.text.split("\n")
         elif request.status_code == 503:
             if quota_exceeded_random_org():
                 return None
@@ -248,6 +242,16 @@ def generator_random_org(amount):
     except Exception as e:
         print("An error occurred: " + str(e))
         return None
+
+    new_results = []
+    for result in results:
+        if result == "":
+            continue
+        result = float(result)
+        new_results.append(result / 1e9)
+
+    quota_exceeded_random_org()
+    return new_results
 
 
 def run():
