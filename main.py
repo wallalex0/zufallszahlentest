@@ -1,8 +1,9 @@
 import datetime
+import matplotlib.pyplot as plot
+import numpy
 import random
 import requests
-import numpy
-import matplotlib.pyplot as plot
+import os
 
 
 def get_curr_timestamp():
