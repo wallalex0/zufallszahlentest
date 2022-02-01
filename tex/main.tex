@@ -3,6 +3,8 @@
 
 % Packages
 \usepackage{amsmath}
+% \usepackage{hyperref}
+\usepackage[utf8]{inputenc}
 
 \title{Zufallszahlen Spektraltest}
 \author{Christian Locatelli, Alexander Wallrodt}
@@ -23,7 +25,40 @@
     \clearpage
 
 
-    \section{First section}\label{sec:First section}
-    \textbf{Hello \LaTeX!}
-    \section{Hallo}\label{sec:hallo}
+    \section{Einleitung}\label{sec:Einleitung}
+    Im folgenden Projekt geht es um die Frage, inwieweit von einem Computer per Algorithmus erzeugte "Pseudo-Zufallszahlen"
+    auch wirklich als zufällig zu Erachten sind.
+    Wir werden daher insgesamt vier unterschiedliche Zufallszahlengeneratoren untersuchen und dabei schauen,
+    ob zwischen den erzeugten Zufallszahlen ein kausaler Zusammenhang besteht,
+    oder ob diese Generatoren den Zufall gut simulieren können.
+
+
+
+    \section{Das Programm}\label{sec:das-programm}
+    Wie ist das Pythonprogramm aufgebaut und wie funktioniert es?
+    \subsection{Der LCG}\label{subsec:der-lcg}
+    Der LCG ist ein einfacher Generator, welcher mit den Startwerten $a$, $xn$, $c$, $m$ aufgerufen wird.
+    $a$ ist der Faktor, $n$ der Startwert, $c$ ist das Inkrement und $m$ der Modulus.
+    Diese können beliebig gewählt werden, jedoch nur bestimmte sehen auch zufällig aus.
+    Für unser Projekt haben wir die Werte des TI-59 von Texas Instruments gewählt~\cite{lcg}.
+
+    \begin{align*}
+    x_n = (a * x_n + 1) \% m
+    \end{align*}
+
+    \section{Ergebnisse}\label{sec:Ergebnisse}
+    Um die Generatoren auf ihre Zufälligkeit zu überprüfen haben wir den Spektraltest genutzt.
+    Bei diesem werden Tupel gebildet, man kann sich aussuchen wie hoch die Tupelanzahl ist.
+    Zur Veranschaulichung haben wir 2er-Tupel gebildet, welche in einem XY-Diagramm, sowie 3er-Tupel welche in einem
+    XYZ-Diagramm dargestellt werden können.
+
+    \begin{thebibliography}
+
+        \bibitem{Referenz1}
+        \url{http://test.com/1}
+
+        \bibitem{lcg}
+        \url{https://de.wikipedia.org/wiki/Kongruenzgenerator}
+
+    \end{thebibliography}
 \end{document}
