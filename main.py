@@ -6,7 +6,7 @@ import requests
 import os
 
 
-def get_curr_timestamp():
+def get_timestamp():
     return str(datetime.datetime.now().replace(microsecond=0))
 
 
