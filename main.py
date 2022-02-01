@@ -184,7 +184,8 @@ def generator_lcg(amount):
     a, n, c, k = 24298, 0, 99991, 199017
     for i in range(amount):
         n = (a * n + c) % k
-        results.append(n)
+        result = float(n) / 199017
+        results.append(result)
     return results
 
 
