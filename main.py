@@ -1,4 +1,5 @@
 import datetime
+import glob
 import matplotlib.pyplot as plot
 import numpy
 import random
@@ -11,17 +12,13 @@ def get_user_mail():
     return "alexander dot aw64 at gmail dot com"
 
 
-def get_timestamp():
-    return str(datetime.datetime.now().replace(microsecond=0))
-
-
-def get_plot_3D(generator, amount, old=False, write=False):
+def get_plot_3D(generator, amount, dataset=None, old=False, write=False):
     numbers = None
 
     if old is False:
         numbers = get_new_random_numbers(generator, amount, write)
     elif old is True:
-        numbers = get_old_random_numbers()
+        numbers = get_old_random_numbers(generator, amount, dataset)
 
     if numbers is None:
         print("No numbers provided to create a graph.")
@@ -53,13 +50,13 @@ def get_plot_3D(generator, amount, old=False, write=False):
     plot.show()
 
 
-def get_plot_2D(generator, amount, old=False, write=False):
+def get_plot_2D(generator, amount, dataset=None, old=False, write=False):
     numbers = None
 
     if old is False:
         numbers = get_new_random_numbers(generator, amount, write)
     elif old is True:
-        numbers = get_old_random_numbers()
+        numbers = get_old_random_numbers(generator, amount, dataset)
 
     if numbers is None:
         print("No numbers provided to create a graph.")
@@ -118,7 +115,8 @@ def get_new_random_numbers(generator, amount, write=False):
 
     if write:
         try:
-            file_name = generator + "_" + get_timestamp().replace(" ", "_").replace(":", "-") + ".txt"
+            dataset = len(glob.glob(f"output_data/{generator}_{amount}_*.txt")) + 1
+            file_name = f"{generator}_{amount}_{dataset}.txt"
             with open("output_data/" + file_name, "w", encoding="utf-8") as file:
                 for number in result:
                     file.write(str(number) + "\n")
@@ -130,23 +128,25 @@ def get_new_random_numbers(generator, amount, write=False):
 
 
 # Method to retrieve old generated numbers
-def get_old_random_numbers():
+def get_old_random_numbers(generator, amount, dataset):
     result = []
 
     try:
-        file_path = input("Which file do you want to use? Please provide the full path to the file: \n")
+        amount = int(amount)
+        dataset = int(dataset)
+    except Exception:
+        print("Incorrect value provided.")
+        return None
 
-        if file_path == "":
-            print("Incorrect file path provided.")
-            return None
-        elif os.path.exists(file_path) is False:
-            print("File does not exist.")
-            return None
-        elif os.path.getsize(file_path) <= 0:
-            print("File is empty.")
-            return None
+    file_path = glob.glob(f"output_data/{generator}_{amount}_{dataset}.txt")
 
-        with open(file_path, "r", encoding="utf-8") as file:
+    if not file_path:
+        print("File not found.")
+        return None
+
+    try:
+        with open(file_path[0], "r", encoding="utf-8") as file:
+            print(f"Reading file '{file_path[0]}'.")
             for line in file.readlines():
                 stripped_line = line.strip("\n")
                 if stripped_line != "":
@@ -155,7 +155,6 @@ def get_old_random_numbers():
                     except Exception as e:
                         print("An error occurred: " + str(e))
                         return None
-
     except Exception as e:
         print("An error occurred: " + str(e))
         return None
@@ -266,8 +265,8 @@ def generator_random_org(amount):
 
 def run():
     print("Welcome to the generator test script!")
-    # get_plot_3D("lcg", 10000)
-    # get_plot_2D("", 0)
+    # get_plot_2D("lcg", 100000, write=True)
+    get_plot_2D("lcg", 123456, 1, old=True)
 
 
 run()
