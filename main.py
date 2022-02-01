@@ -10,8 +10,17 @@ def get_curr_timestamp():
     return str(datetime.datetime.now().replace(microsecond=0))
 
 
-def get_plot_3D(generator, amount):
-    numbers = get_random_numbers(generator, amount)
+def get_plot_3D(generator, amount, old=False, write=False):
+    numbers = None
+
+    if old is False:
+        numbers = get_new_random_numbers(generator, amount, write)
+    elif old is True:
+        numbers = get_old_random_numbers()
+
+    if numbers is None:
+        print("No numbers provided to create a graph.")
+        return
 
     numbers_x = []
     numbers_y = []
@@ -37,9 +46,17 @@ def get_plot_3D(generator, amount):
     plot.show()
 
 
-def get_plot_2D(generator, amount):
+def get_plot_2D(generator, amount, old=False, write=False):
+    numbers = None
 
-    numbers = get_random_numbers(generator, amount)
+    if old is False:
+        numbers = get_new_random_numbers(generator, amount, write)
+    elif old is True:
+        numbers = get_old_random_numbers()
+
+    if numbers is None:
+        print("No numbers provided to create a graph.")
+        return
 
     numbers_x = []
     numbers_y = []
@@ -62,13 +79,15 @@ def get_plot_2D(generator, amount):
     plot.show()
 
 
-def get_random_numbers(generator, amount, write=False):
+# Method to retrieve new generated numbers
+def get_new_random_numbers(generator, amount, write=False):
     result = []
 
     try:
         amount = int(amount)
+        write = bool(write)
     except Exception:
-        print("Incorrect amount value provided.")
+        print("Incorrect value provided.")
         return None
 
     if amount < 1:
@@ -77,23 +96,60 @@ def get_random_numbers(generator, amount, write=False):
 
     if generator == "random_lib":
         result = generator_random(amount)
-    if generator == "numpy_lib":
+    elif generator == "numpy_lib":
         result = generator_numpy(amount)
-    if generator == "lcg":
+    elif generator == "lcg":
         result = generator_lcg(amount)
-    # if generator == "random_org":
-    #     write = True
-    #     result = generator_random_org(amount)
+    elif generator == "random_org":
+        write = True
+        result = generator_random_org(amount)
+    else:
+        print("No generator specified.")
+        return None
 
     if write:
         try:
-            file_name = generator + "_" + get_curr_timestamp().replace(" ", "_").replace(":", "-") + ".txt"
-            with open("output_data/" + file_name, "w", encoding="utf-8") as out:
+            file_name = generator + "_" + get_timestamp().replace(" ", "_").replace(":", "-") + ".txt"
+            with open("output_data/" + file_name, "w", encoding="utf-8") as file:
                 for number in result:
-                    out.write(str(number) + "\n")
+                    file.write(str(number) + "\n")
             print("Wrote results to: output_data/" + file_name)
         except Exception as e:
             print("An error occurred: " + str(e))
+
+    return result
+
+
+# Method to retrieve old generated numbers
+def get_old_random_numbers():
+    result = []
+
+    try:
+        file_path = input("Which file do you want to use? Please provide the full path to the file: \n")
+
+        if file_path == "":
+            print("Incorrect file path provided.")
+            return None
+        elif os.path.exists(file_path) is False:
+            print("File does not exist.")
+            return None
+        elif os.path.getsize(file_path) <= 0:
+            print("File is empty.")
+            return None
+
+        with open(file_path, "r", encoding="utf-8") as file:
+            for line in file.readlines():
+                stripped_line = line.strip("\n")
+                if stripped_line != "":
+                    try:
+                        result.append(int(stripped_line))
+                    except Exception as e:
+                        print("An error occurred: " + str(e))
+                        return None
+
+    except Exception as e:
+        print("An error occurred: " + str(e))
+        return None
 
     return result
 
