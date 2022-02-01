@@ -185,9 +185,13 @@ def generator_lcg(amount):
 
 # To automate random.org requests you need to check quota
 def quota_exceeded_random_org():
+    if get_user_mail() == "":
+        print("No user mail provided, can't use the random.org api quota checker.")
+        return True
+
     print("Checking quota of random.org.")
     try:
-        header = {'User-Agent': 'alexander dot aw64 at gmail dot com'}
+        header = {'User-Agent': f'{get_user_mail()}'}
         request = requests.get(url=f"https://www.random.org/quota/?format=plain", headers=header)
         if request.status_code == 200:
             response = int(request.text)
@@ -206,7 +210,13 @@ def quota_exceeded_random_org():
 
 
 # Random.org generator
-def generator_random_org(amount, start, end):
+def generator_random_org(amount):
+    results = []
+
+    if get_user_mail() == "":
+        print("No user mail provided, can't use the random.org api.")
+        return None
+
     if amount > 1e4:
         print("Amount value is too high, random.org can only process an amount up to 10000.")
         return None
@@ -223,7 +233,7 @@ def generator_random_org(amount, start, end):
     quota_exceeded_random_org()
     print(f"Getting {amount} random numbers from random.org, in range from {start} to {end}.")
     try:
-        header = {'User-Agent': 'alexander at jwallrodt dot com'}
+        header = {'User-Agent': f'{get_user_mail()}'}
         request = requests.get(
             url=f"https://www.random.org/integers/?num={amount}&min={start}&max={end}&col=1&base=10&format=plain&rnd=new",
             headers=header)
