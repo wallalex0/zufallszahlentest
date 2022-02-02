@@ -46,7 +46,7 @@
     Für unser Projekt haben wir die Werte des TI-59 von Texas Instruments gewählt~\cite{lcg}.
 
     \begin{align*}
-    x_n = (a * x_n + 1) mod m
+    x_n = (a * x_n + 1) \bmod m
     \end{align*}
 
     \subsection{Der Random.org Generator}\label{subsec:der-random.org-generator}
@@ -58,11 +58,12 @@
 
     \subsection{Die Zufallsgeneratoren von Python}\label{subsec:die-zufallsgeneratoren-von-python}
     Python hat selbst verschiedene Zufallszahlengeneratoren integriert, die Pseudo-Zufallszahlen erstellen können.
-    Hierbei wird der sogenannte Mersenne-Twister verwendet, welc
-
-
-
-
+    Hierbei wird der sogenannte Mersenne-Twister verwendet, welcher floats in einer Genauigkeit von 53 Bit erzeugt und welcher
+    eine Periode von $p=2^{19937}-1$ besitzt.
+    Er gilt als einer der am häufigsten getesteten Zufallsgeneratoren, ist jedoch vollständig deterministisch,
+    weswegen er beispielsweise für Kryptografie ungeeignet wäre~\cite{python-random,mersenne-twister}.
+    Im Programm werden die Methodem random.random() und numpy.random() getestet,
+    welche eine Fließkommazahl zwischen 0 und 1 erzeugen.
 
 
 
@@ -74,6 +75,9 @@
 
     \subsection{Durchgeführte Tests}\label{subsec:durchgeführte-tests}
     Wir haben den Spektraltest auf verschiedene Generatoren angewandt.
+    Diese geben alle Fließkommazahlen zwischen 0 und 1 zurück, um einen guten Vergleich zu haben.
+    Wir haben bei jedem Generator 100000 Zufallszahlen abgerufen,
+    jedoch sind wir beschränkt bezüglich der Anzahl der Zufallszahlen auf 10000 bei Random.org.
 
     \begin{table}[h]
 
@@ -106,6 +110,14 @@
     \end{table}
 
     \subsection{Fazit}\label{subsec:fazit}
+    Die Ergebnisse zeigen, dass die Zufallsgeneratoren der Python-Bibliotheken zufällig aussehen, da wir jedoch wissen,
+    dass die Generatoren der Bibliotheken auf dem Mersenne-Twister basieren,
+    können wir diese als \textit{gute} Pseudozufallszahlengeneratoren bezeichnen.
+    Erst mit sehr hohen Perioden wären dort Muster zu erkennen.
+    Der LCG ist kein guter Generator, da in der 3D- und 2D-Darstellung mit leichtigkeit Muster zu erkennen sind.
+    Der Random.org Generator zeigt ebenfalls keine Muster auf, demnach wären seine Werte echt zufällig,
+    dies stimmt auch mit der Aussage von Random.org überein~\cite{random-org}.
+
 
     \vfill
 
