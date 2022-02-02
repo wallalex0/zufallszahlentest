@@ -6,7 +6,7 @@
 \usepackage{hyperref}
 \usepackage[utf8]{inputenc}
 
-\title{Zufallszahlen Spektraltest}
+\title{\testbf{Zufallszahlen Spektraltest}}
 \author{Christian Locatelli, Alexander Wallrodt}
 \date{\today}
 
@@ -26,7 +26,7 @@
 
 
     \section{Einleitung}\label{sec:Einleitung}
-    Im folgenden Projekt geht es um die Frage, inwieweit von einem Computer per Algorithmus erzeugte "Pseudo-Zufallszahlen"
+    Im folgenden Projekt geht es um die Frage, inwieweit von einem Computer per Algorithmus erzeugte Pseudo-Zufallszahlen
     auch wirklich als zufällig zu Erachten sind.
     Wir werden daher insgesamt vier unterschiedliche Zufallszahlengeneratoren untersuchen und dabei schauen,
     ob zwischen den erzeugten Zufallszahlen ein kausaler Zusammenhang besteht,
@@ -46,6 +46,23 @@
     x_n = (a * x_n + 1) \% m
     \end{align*}
 
+    \subsection{Der Random.org Generator}\label{subsec:der-random.org-generator}
+    Random.Org ist eine Internetseite, die sich darauf spezialisiert hat, Zufallszahlen zu erzeugen.
+    Sie wird unter anderem für Lotterien und Online-Spiele, aber auch für diverse wissenschaftliche
+    Anwendungen verwendet.
+    Hierbei behaupten die Entwickler, der Generator würde mithilfe von atmosphärischem
+    Rauschen echte Zufallszahlen erstellen, die besser sind als die von Computer erstellten Pseudo-Zufallszahlen~\cite{random-org}.
+
+    \subsection{Die Zufallsgeneratoren von Python}\label{subsec:die-zufallsgeneratoren-von-python}
+    Python hat selbst verschiedene Zufallszahlengeneratoren integriert, die Pseudo-Zufallszahlen erstellen können.
+    Hierbei wird der sogenannte Mersenne-Twister verwendet, welc
+
+
+
+
+
+
+
     \section{Ergebnisse}\label{sec:Ergebnisse}
     Um die Generatoren auf ihre Zufälligkeit zu überprüfen haben wir den Spektraltest genutzt.
     Bei diesem werden Tupel gebildet, man kann sich aussuchen wie hoch die Tupelanzahl ist.
@@ -59,6 +76,9 @@
 
         \bibitem{lcg}
         \url{https://de.wikipedia.org/wiki/Kongruenzgenerator}
+
+        \bibitem{random-org}
+        \url{https://www.random.org/analysis/}
 
     \end{thebibliography}
 \end{document}
