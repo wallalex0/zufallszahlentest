@@ -5,6 +5,7 @@
 \usepackage{amsmath}
 \usepackage{hyperref}
 \usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
 
 \title{\testbf{Zufallszahlen Spektraltest}}
 \author{Christian Locatelli, Alexander Wallrodt}
@@ -18,10 +19,11 @@
 
     % Inhaltsverzeichnis
     \tableofcontents
-    % Liste der Bilder
-    \listoffigures
     % Liste der Tabellen
     \listoftables
+    % Liste der Bilder
+    \listoffigures
+
     \clearpage
 
 
@@ -34,8 +36,9 @@
 
 
 
-    \section{Das Programm}\label{sec:das-programm}
-    Wie ist das Pythonprogramm aufgebaut und wie funktioniert es?
+    \section{Das Pythonscript}\label{sec:das-pythonscript}
+    Wie ist das Pythonscript aufgebaut und wie funktioniert es?
+
     \subsection{Der LCG}\label{subsec:der-lcg}
     Der LCG ist ein einfacher Generator, welcher mit den Startwerten $a$, $x_n$, $c$, $m$ aufgerufen wird.
     $a$ ist der Faktor, $n$ der Startwert, $c$ ist das Inkrement und $m$ der Modulus.
@@ -43,7 +46,7 @@
     Für unser Projekt haben wir die Werte des TI-59 von Texas Instruments gewählt~\cite{lcg}.
 
     \begin{align*}
-    x_n = (a * x_n + 1) \% m
+    x_n = (a * x_n + 1) mod m
     \end{align*}
 
     \subsection{Der Random.org Generator}\label{subsec:der-random.org-generator}
@@ -63,16 +66,61 @@
 
 
 
+    \subsection{Der Random.org Generator}\label{subsec:der-random.org-generator}
+    Random.Org ist eine Internetseite, die sich darauf spezialisiert hat, Zufallszahlen zu erzeugen.
+    Sie wird unter anderem für Lotterien und Online-Spiele, aber auch für diverse wissenschaftliche
+    Anwendungen verwendet.
+    Hierbei behaupten die Entwickler, der Generator würde mithilfe von atmosphärischem
+    Rauschen echte Zufallszahlen erstellen, die besser sind als die von Computer erstellten "Pseudo-Zufallszahlen"~\cite{random-org}.
+
+    \subsection{Die Zufallsgeneratoren von Python}\label{subsec:die-zufallsgeneratoren-von-python}
+    Python
+    Wir werden ebensfalls die beiden Metoden random.random() und numpy.random() testen.
+
+
+
+
+
+
+
     \section{Ergebnisse}\label{sec:Ergebnisse}
     Um die Generatoren auf ihre Zufälligkeit zu überprüfen haben wir den Spektraltest genutzt.
     Bei diesem werden Tupel gebildet, man kann sich aussuchen wie hoch die Tupelanzahl ist.
     Zur Veranschaulichung haben wir 2er-Tupel gebildet, welche in einem XY-Diagramm, sowie 3er-Tupel welche in einem
     XYZ-Diagramm dargestellt werden können.
 
-    \begin{thebibliography}
+    \begin{table}[h]
 
-        \bibitem{Referenz1}
-        \url{http://test.com/1}
+        \caption[Ergebnisstabelle]{Ergebnisstabelle}
+
+        \centering
+
+        \begin{tabular}{|c||c|c|}
+
+            \hline
+            & XY-Tupel & XYZ-Tupel \\
+
+            \hline
+            \hline
+            LCG & Picture 1.1 & Picture 1.1 \\
+
+            \hline
+            Random Library & Picture 2.1 & Picture 2.2 \\
+
+            \hline
+            Numpy Library & Picture 3.1 & Picture 3.2 \\
+
+            \hline
+            Random.org & Picture 4.1 & Picture 4.2 \\
+
+            \hline
+
+        \end{tabular}\label{tab:ergebnisse}
+    \end{table}
+
+    \vfill
+
+    \begin{thebibliography}{12345}
 
         \bibitem{lcg}
         \url{https://de.wikipedia.org/wiki/Kongruenzgenerator}
