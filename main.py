@@ -10,6 +10,7 @@ def get_user_mail():
     return "alexander dot aw64 at gmail dot com"
 
 
+# Create a  3D plot with random numbers
 def get_plot_3D(generator, amount, dataset=None, old=False, write=False):
     numbers = None
 
@@ -48,6 +49,7 @@ def get_plot_3D(generator, amount, dataset=None, old=False, write=False):
     plot.show()
 
 
+# Create a  2D plot with random numbers
 def get_plot_2D(generator, amount, dataset=None, old=False, write=False):
     numbers = None
 
