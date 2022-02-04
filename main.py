@@ -27,7 +27,7 @@ def get_plot_3D(generator, amount, dataset=None, old=False, write=False):
     numbers_y = []
     numbers_z = []
 
-    title = f"Random numbers by {generator}, with an amount of {amount} numbers"
+    title = f"Random numbers by {generator} with an amount of {amount} numbers in 3D"
 
     figure = plot.figure(num=title)
 
@@ -65,7 +65,7 @@ def get_plot_2D(generator, amount, dataset=None, old=False, write=False):
     numbers_x = []
     numbers_y = []
 
-    title = f"Random numbers by {generator}, with an amount of {amount} numbers"
+    title = f"Random numbers by {generator} with an amount of {amount} numbers in 2D"
 
     figure = plot.figure(num=title)
 
