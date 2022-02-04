@@ -134,6 +134,7 @@ dmypy.json
 # TeX
 tex/out/
 tex/auxil/
+tex/Protokollvorlage/
 
 # Program
 output_data/
