@@ -265,8 +265,51 @@ def generator_random_org(amount):
 
 def run():
     print("Welcome to the generator test script!")
-    # get_plot_2D("lcg", 100000, write=True)
-    get_plot_2D("lcg", 123456, 1, old=True)
+
+    """ Methods for the result table """
+
+    """ XY-tuple of the lcg with 100000 numbers in 2D """
+    # get_plot_2D("lcg", 100000)
+    """ XYZ-tuple of the lcg with 100000 numbers in 3D """
+    # get_plot_3D("lcg", 100000)
+
+    """ XY-tuple by random.random() with 100000 numbers in 2D """
+    # get_plot_2D("random_lib", 100000, write=True)
+    """ XYZ-tuple by random.random() with 100000 numbers in 3D """
+    # get_plot_3D("random_lib", 100000)
+
+    """ XY-tuple by numpy.random.random() with 100000 numbers in 2D """
+    # get_plot_2D("numpy_lib", 100000)
+    """ XYZ-tuple by numpy.random.random() with 100000 numbers in 3D """
+    # get_plot_3D("numpy_lib", 100000)
+
+    """ 
+    Watch out! You could exceed the quota and not be able to request new numbers for that day
+    Because of that, every request to random.org is saved in output_data/ 
+    """
+    """ XY-tuple by Random.org with 10000 numbers in 2D """
+    # get_plot_2D("random_org", 10000)
+    """ XYZ-tuple by Random.org with 10000 numbers in 3D """
+    # get_plot_3D("random_org", 10000)
+    
+    """ Other useful methods """
+
+    """ You can request new numbers in a list
+        Possible generator string are 'random_lib', 'numpy_lib', 'lcg', 'random_org'
+        The amount can be from 1 to ..., except for random_org there is the max 10000 """
+    # print(get_new_random_numbers("numpy_lib", 100000, write=True))
+
+    """ You can use write=True as parameter to safe the generated numbers to output_data/ """
+    # get_plot_2D("numpy_lib", 100000, write=True)
+    # print(get_new_random_numbers("numpy_lib", 100000, write=True))
+
+    """ You can use numbers which are saved to output_data/
+        It searches in the folder for files with the generator name, amount of numbers and dataset index
+        Now is the parameter write= ignored and dataset= specifies the file index of same generator and amount """
+    # get_plot_3D("numpy_lib", 100000, dataset=1, old=True)
+    # print(get_old_random_numbers("numpy_lib", 100000, dataset=1))
+    
+    print("Bye, have a good day. :)")
 
 
 run()
