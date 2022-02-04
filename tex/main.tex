@@ -10,6 +10,8 @@
 \usepackage{color}
 \usepackage{rotating}
 \usepackage{float}
+\usepackage{caption}
+\usepackage{chngpage}
 
 \title{\textbf{Zufallszahlen Spektraltest}}
 \author{Christian Locatelli, Alexander Wallrodt}
@@ -69,10 +71,9 @@
     welche eine Fließkommazahl zwischen 0 und 1 erzeugen.
 
 
-
     \section{Ergebnisse}\label{sec:Ergebnisse}
     Um die Generatoren auf ihre Zufälligkeit zu überprüfen wurde der Spektraltest verwendet.
-    Bei diesem werden Tupel gebildet, welche man als Punkt im dreidimensionalen Raum interpretiert und darstelllt.
+    Bei diesem werden Tupel gebildet, welche man als Punkt im dreidimensionalen Raum interpretiert und darstellt.
     Ziel ist dabei eine gleichmäßig verteilte Menge von Tupeln.
     Wenn sich jedoch Muster erkennen lassen kann man direkt festhalten, dass ein stochastische Abhängigkeit vorherrscht~\cite{spektraltest}.
     In diesem Projekt wurden zur Veranschaulichung 2er-Tupel und 3er-Tupel gebildet,
@@ -82,51 +83,110 @@
     Bei jedem Generator wurden 100.000 Zufallszahlen abgerufen, jedoch ist man bei Random.org beschränkt,
     weswegen dort nur 10.000 Zufallszahlen abgerufen wurden.
 
-    \begin{table}
 
-        \caption[Ergebnisstabelle]{Ergebnisstabelle}
+    \begin{table}
 
         \centering
 
-        \begin{tabular}{|c||c|c|}
+        \caption[Ergebnisstabelle]{Ergebnisstabelle}
 
-            \hline
-            & XY-Tupel & XYZ-Tupel \\
+        \begin{adjustwidth}{-1.5cm}{-1.5cm}
+
+            \begin{tabular}{|c||c|c|}
+
+                \hline
+                & XY-Tupel & XYZ-Tupel \\
 
 
-            \hline
-            \hline
-            \rotatebox{90}{LCG} &
-            \begin{figure}
-                \centering
-                \includegraphics[width=6cm]{images/Random_numbers_by_lcg_with_an_amount_of_100000_numbers_in_2D}
-                \caption[LCG Generator mit 100000 Zahlen in 2D]{LCG Generator mit 100000 Zahlen in 2D}
-                \label{fig:figure}
-            \end{figure}
+                \hline
+                \hline
 
-            &
-            \includegraphics[width=6cm]{images/Random_numbers_by_lcg_with_an_amount_of_100000_numbers_in_3D} \\
+                \rotatebox{90}{LCG} &
+                \begin{minipage}[b]{7.5cm}
+                    \centering
+                    \captionsetup{font=scriptsize}
+                    \includegraphics[width=6cm]{images/Random_numbers_by_lcg_with_an_amount_of_100000_numbers_in_2D}
+                    \captionof{figure}[LCG mit 100000 Zahlen in 2D]{mit 100000 Zahlen}
+                    \label{fig:figure}
+                \end{minipage}
+                &
+                \begin{minipage}[b]{7.5cm}
+                    \centering
+                    \captionsetup{font=scriptsize}
+                    \includegraphics[width=6cm]{images/Random_numbers_by_lcg_with_an_amount_of_100000_numbers_in_3D}
+                    \captionof{figure}[LCG mit 100000 Zahlen in 3D]{mit 100000 Zahlen}
+                    \label{fig:figure2}
+                \end{minipage}
 
-            \hline
-            \rotatebox{90}{Random Library} &
-            \includegraphics[width=6cm]{images/Random_numbers_by_random_lib_with_an_amount_of_100000_numbers_in_2D} &
-            \includegraphics[width=6cm]{images/Random_numbers_by_random_lib_with_an_amount_of_100000_numbers_in_3D} \\
+                \\
+                \hline
 
-            \hline
-            \rotatebox{90}{Numpy Library} &
-            \includegraphics[width=6cm]{images/Random_numbers_by_numpy_lib_with_an_amount_of_100000_numbers_in_2D} &
-            \includegraphics[width=6cm]{images/Random_numbers_by_numpy_lib_with_an_amount_of_100000_numbers_in_3D} \\
+                \rotatebox{90}{Random Library} &
+                \begin{minipage}[b]{7.5cm}
+                    \centering
+                    \captionsetup{font=scriptsize}
+                    \includegraphics[width=6cm]{images/Random_numbers_by_random_lib_with_an_amount_of_100000_numbers_in_2D}
+                    \captionof{figure}[Random Library mit 100000 Zahlen in 2D]{mit 100000 Zahlen}
+                    \label{fig:figure3}
+                \end{minipage}
+                &
+                \begin{minipage}[b]{7.5cm}
+                    \centering
+                    \captionsetup{font=scriptsize}
+                    \includegraphics[width=6cm]{images/Random_numbers_by_random_lib_with_an_amount_of_100000_numbers_in_3D}
+                    \captionof{figure}[Random Library mit 100000 Zahlen in 3D]{mit 100000 Zahlen}
+                    \label{fig:figure4}
+                \end{minipage}
 
-            \hline
-            \rotatebox{90}{Random.org} &
-            \includegraphics[width=6cm]{images/Random_numbers_by_random_org_with_an_amount_of_10000_numbers_in_2D} &
-            \includegraphics[width=6cm]{images/Random_numbers_by_random_org_with_an_amount_of_10000_numbers_in_3D} \\
+                \\
+                \hline
 
-            \hline
+                \rotatebox{90}{Numpy Library} &
+                \begin{minipage}[b]{7.5cm}
+                    \centering
+                    \captionsetup{font=scriptsize}
+                    \includegraphics[width=6cm]{images/Random_numbers_by_numpy_lib_with_an_amount_of_100000_numbers_in_2D}
+                    \captionof{figure}[Numpy Library mit 100000 Zahlen in 2D]{mit 100000 Zahlen}
+                    \label{fig:figure5}
+                \end{minipage}
+                &
+                \begin{minipage}[b]{7.5cm}
+                    \centering
+                    \captionsetup{font=scriptsize}
+                    \includegraphics[width=6cm]{images/Random_numbers_by_numpy_lib_with_an_amount_of_100000_numbers_in_3D}
+                    \captionof{figure}[Numpy Library mit 100000 Zahlen in 3D]{mit 100000 Zahlen}
+                    \label{fig:figure6}
+                \end{minipage}
 
-        \end{tabular}\label{tab:ergebnisse}
+                \\
+                \hline
+
+                \rotatebox{90}{Random.org} &
+                \begin{minipage}[b]{7.5cm}
+                    \centering
+                    \captionsetup{font=scriptsize}
+                    \includegraphics[width=6cm]{images/Random_numbers_by_random_org_with_an_amount_of_10000_numbers_in_2D}
+                    \captionof{figure}[Random.org mit 100000 Zahlen in 2D]{mit 10000 Zahlen}
+                    \label{fig:figure7}
+                \end{minipage}
+                &
+                \begin{minipage}[b]{7.5cm}
+                    \centering
+                    \captionsetup{font=scriptsize}
+                    \includegraphics[width=6cm]{images/Random_numbers_by_random_org_with_an_amount_of_10000_numbers_in_3D}
+                    \captionof{figure}[Random.org mit 100000 Zahlen in 3D]{mit 10000 Zahlen}
+                    \label{fig:figure8}
+                \end{minipage}
+
+                \\
+                \hline
+
+            \end{tabular}\label{tab:ergebnisse}
+
+        \end{adjustwidth}
 
     \end{table}
+
 
     \subsection{Fazit}\label{subsec:fazit}
     Die Ergebnisse zeigen, dass der LCG kein guter Generator ist, da in der 3D- und 2D-Darstellung Muster zu erkennen sind und somit ein kausaler Zusammenhang zwischen den erzeugten Tupeln besteht.
