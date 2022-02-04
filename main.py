@@ -274,7 +274,7 @@ def run():
     # get_plot_3D("lcg", 100000)
 
     """ XY-tuple by random.random() with 100000 numbers in 2D """
-    # get_plot_2D("random_lib", 100000, write=True)
+    # get_plot_2D("random_lib", 100000)
     """ XYZ-tuple by random.random() with 100000 numbers in 3D """
     # get_plot_3D("random_lib", 100000)
 
