@@ -1,10 +1,8 @@
-import datetime
 import glob
 import matplotlib.pyplot as plot
 import numpy
 import random
 import requests
-import os
 
 
 def get_user_mail():
