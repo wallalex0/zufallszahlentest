@@ -44,9 +44,14 @@ def get_plot_3D(generator, amount, dataset=None, old=False, write=False):
 
     axis.scatter(numbers_x, numbers_y, numbers_z, marker=".", s=1)
 
+    ticks = [0, 0.2, 0.4, 0.6, 0.8, 1.0]
+
     axis.set_xlabel('X Feld')
+    axis.set_xticks(ticks)
     axis.set_ylabel('Y Feld')
+    axis.set_yticks(ticks)
     axis.set_zlabel('Z Feld')
+    axis.set_zticks(ticks)
 
     plot.show()
 
@@ -83,8 +88,12 @@ def get_plot_2D(generator, amount, dataset=None, old=False, write=False):
 
     axis.scatter(numbers_x, numbers_y, marker=".", s=0.5)
 
+    ticks = [0, 0.2, 0.4, 0.6, 0.8, 1.0]
+
     axis.set_xlabel('X Feld')
+    axis.set_xticks(ticks)
     axis.set_ylabel('Y Feld')
+    axis.set_yticks(ticks)
 
     plot.show()
 
