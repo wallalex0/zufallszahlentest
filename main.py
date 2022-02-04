@@ -31,6 +31,8 @@ def get_plot_3D(generator, amount, dataset=None, old=False, write=False):
 
     figure = plot.figure(num=title)
 
+    plot.rc('font', size=15)
+
     axis = figure.add_subplot(projection='3d')
 
     i = 0
@@ -68,6 +70,8 @@ def get_plot_2D(generator, amount, dataset=None, old=False, write=False):
     title = f"Random numbers by {generator} with an amount of {amount} numbers in 2D"
 
     figure = plot.figure(num=title)
+
+    plot.rc('font', size=15)
 
     axis = figure.add_subplot()
 
