@@ -33,7 +33,7 @@ def get_plot_3D(generator, amount, dataset=None, old=False, write=False):
 
     plot.rc('font', size=15)
 
-    axis = figure.add_subplot(projection='3d')
+    axis = plot.axes(projection="3d")
 
     i = 0
     while i < len(numbers) - 3:
@@ -78,7 +78,7 @@ def get_plot_2D(generator, amount, dataset=None, old=False, write=False):
 
     plot.rc('font', size=15)
 
-    axis = figure.add_subplot()
+    axis = plot.axes()
 
     i = 0
     while i < len(numbers) - 2:
