@@ -33,7 +33,7 @@
     \section{Einleitung}\label{sec:Einleitung}
     Im folgenden Projekt geht es um die Frage, inwieweit von einem Computer per Algorithmus erzeugte Pseudo-Zufallszahlen
     auch wirklich als zufällig zu Erachten sind.
-    Wir werden daher insgesamt vier unterschiedliche Zufallszahlengeneratoren untersuchen und dabei schauen,
+    Es werden daher insgesamt vier unterschiedliche Zufallszahlengeneratoren mit einem Sprektraltest untersucht und dabei erörtert,
     ob zwischen den erzeugten Zufallszahlen ein kausaler Zusammenhang besteht,
     oder ob diese Generatoren den Zufall gut simulieren können.
 
@@ -53,7 +53,7 @@
     \end{align*}
 
     \subsection{Der Random.org Generator}\label{subsec:der-random.org-generator}
-    Random.Org ist eine Internetseite, die sich darauf spezialisiert hat, Zufallszahlen zu erzeugen.
+    Random.org ist eine Internetseite, die sich darauf spezialisiert hat, Zufallszahlen zu erzeugen.
     Sie wird unter anderem für Lotterien und Online-Spiele, aber auch für diverse wissenschaftliche
     Anwendungen verwendet.
     Hierbei behaupten die Entwickler, der Generator würde mithilfe von atmosphärischem
@@ -129,13 +129,14 @@
     \end{table}
 
     \subsection{Fazit}\label{subsec:fazit}
-    Die Ergebnisse zeigen, dass die Zufallsgeneratoren der Python-Bibliotheken zufällig aussehen, da wir jedoch wissen,
-    dass die Generatoren der Bibliotheken auf dem Mersenne-Twister basieren,
-    können wir diese als \textit{gute} Pseudozufallszahlengeneratoren bezeichnen.
-    Erst mit sehr hohen Perioden wären dort Muster zu erkennen.
-    Der LCG ist kein guter Generator, da in der 3D- und 2D-Darstellung mit leichtigkeit Muster zu erkennen sind.
-    Der Random.org Generator zeigt ebenfalls keine Muster auf, demnach wären seine Werte echt zufällig,
-    dies stimmt auch mit der Aussage von Random.org überein~\cite{random-org}.
+    Die Ergebnisse zeigen, dass der LCG kein guter Generator ist, da in der 3D- und 2D-Darstellung Muster zu erkennen sind und somit ein kausaler Zusammenhang zwischen den erzeugten Tupeln besteht.
+    Die Tupel in den Zufallsgeneratoren der Python-Bibliotheken sind dagegen sehr gleichmäßig verteilt.
+    Man könnte daher schlussfolgern, dass es sich um zufällig erstellte Zahlen handelt.
+    Da die Bibliotheken jedoch wie beschrieben auf dem Mersenne-Twister basieren, bei welchem man erst ab einer sehr hohen Periode Kausalitäten erkennen würde,
+    können die Generatoren lediglich als "gute" Pseudozufallszahlengeneratoren bezeichnet werden.
+    Die Tupel vom Generator der Seite Random.org sind ebenfalls sehr gleichmäßig verteilt und es lassen sich keine Muster erkennen.
+    Man bräuchte allerdings eine viel größere Menge von Zufallszahlen, um zu beweisen, dass der Generator "echte" Zufallszahlen erzeugt.
+    Durch die Angaben der Entwickler lässt sich aber zusammenfassend festhalten, dass dies der beste Generator ist.
 
 
     \vfill
@@ -156,6 +157,9 @@
 
         \bibitem{mersenne-twister}
         \url{https://de.wikipedia.org/wiki/Mersenne-Twister}
+
+        \bibitem{spektraltest}
+        \url{https://de.wikipedia.org/wiki/Spektraltest}
 
     \end{thebibliography}
 
