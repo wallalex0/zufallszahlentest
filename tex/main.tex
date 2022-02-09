@@ -10,8 +10,32 @@
 \usepackage{color}
 \usepackage{rotating}
 \usepackage{float}
-\usepackage{caption}
+\usepackage[format=plain, indention=1cm, scriptsize, font=sf, labelfont=bf]{caption}
 \usepackage{chngpage}
+
+\clubpenalty=10000
+\widowpenalty=10000
+
+\definecolor{LinkColor}{rgb}{0,0,0.75}
+
+\hypersetup{
+	pdftitle = {Zufallszahlentest},
+	pdfsubject = {Zufallszahlentest mit dem Spektraltest},
+	pdfauthor = {Christian Locatelli, Alexander Wallrodt},
+	bookmarksnumbered = true,
+	bookmarksopen = false,
+	colorlinks = false,
+	hypertexnames = true,
+	a4paper = true,
+	colorlinks=true,
+	linkcolor=LinkColor,
+	citecolor=LinkColor,
+	filecolor=LinkColor,
+	menucolor=LinkColor,
+	pagecolor=LinkColor,
+	urlcolor=LinkColor,
+	breaklinks=true
+}
 
 \title{\textbf{Zufallszahlen Spektraltest}}
 \author{Christian Locatelli, Alexander Wallrodt}
@@ -83,6 +107,10 @@
     Bei jedem Generator wurden 100.000 Zufallszahlen abgerufen, jedoch ist man bei Random.org beschränkt,
     weswegen dort nur 10.000 Zufallszahlen abgerufen wurden.
 
+    \section{Ergebnisse}\label{sec:Ergebnisse}
+    Die Ergebnisse sind in einer Tabelle festgehalten.
+
+    \vfill
 
     \begin{table}
 
@@ -96,7 +124,6 @@
 
                 \hline
                 & XY-Tupel & XYZ-Tupel \\
-
 
                 \hline
                 \hline
@@ -119,6 +146,7 @@
                 \end{minipage}
 
                 \\
+
                 \hline
 
                 \rotatebox{90}{Random Library} &
@@ -139,6 +167,7 @@
                 \end{minipage}
 
                 \\
+
                 \hline
 
                 \rotatebox{90}{Numpy Library} &
@@ -179,6 +208,7 @@
                 \end{minipage}
 
                 \\
+
                 \hline
 
             \end{tabular}\label{tab:ergebnisse}
@@ -188,7 +218,7 @@
     \end{table}
 
 
-    \subsection{Fazit}\label{subsec:fazit}
+    \section{Fazit}\label{sec:fazit}
     Die Ergebnisse zeigen, dass der LCG kein guter Generator ist, da in der 3D- und 2D-Darstellung Muster zu erkennen sind und somit ein kausaler Zusammenhang zwischen den erzeugten Tupeln besteht.
     Die Tupel in den Zufallsgeneratoren der Python-Bibliotheken sind dagegen sehr gleichmäßig verteilt.
     Man könnte daher schlussfolgern, dass es sich um zufällig erstellte Zahlen handelt.
