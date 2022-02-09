@@ -57,10 +57,11 @@
 
 
     \section{Einleitung}\label{sec:Einleitung}
-    In diesem Projekt geht es um die Frage, inwieweit von einem Computer per Algorithmus erzeugte Pseudo-Zufallszahlen
+    In diesem Projekt geht es um die Frage, inwieweit von einem Computer per Algorithmus erzeugte Pseudozufallszahlen
     auch wirklich als zufällig zu Erachten sind.
     Es werden daher insgesamt vier unterschiedliche Zufallszahlengeneratoren mit einem Sprektraltest untersucht und dabei erörtert,
-    ob zwischen den erzeugten Zufallszahlen ein kausaler Zusammenhang besteht oder ob diese Generatoren den Zufall gut simulieren können.
+    ob zwischen den erzeugten Zufallszahlen ein kausaler Zusammenhang besteht
+    und ob diese Generatoren den Zufall gut simulieren können.
 
     \section{Die Generatoren}\label{sec:die-generatoren}
     Im Folgenden werden die verwendeten Generatoren beschrieben und erklärt, wie sie funktionieren beziehungsweise wie
@@ -69,7 +70,7 @@
     \subsection{Der LCG}\label{subsec:der-lcg}
     Der LCG ist ein einfacher Generator, welcher mit den Startwerten $a$, $x_n$, $c$, $m$ aufgerufen wird.
     $a$ ist der Faktor, $n$ der Startwert, $c$ ist das Inkrement und $m$ der Modulus.
-    Diese können beliebig gewählt werden, jedoch nur bestimmte sehen auch zufällig aus.
+    Diese können beliebig gewählt werden, jedoch sehen nur mit bestimmten Werten die Zufallsergebnisse auch "zufällig" aus.
     Für unser Projekt haben wir die Werte des TI-59 von Texas Instruments gewählt~\cite{lcg}.
 
     \begin{align*}
@@ -77,7 +78,7 @@
     \end{align*}
 
     \subsection{Die Zufallsgeneratoren von Python}\label{subsec:die-zufallsgeneratoren-von-python}
-    Python hat selbst verschiedene Zufallszahlengeneratoren integriert, die Pseudo-Zufallszahlen erstellen können.
+    Python hat selbst verschiedene Zufallszahlengeneratoren integriert, die Pseudozufallszahlen erstellen können.
     Hierbei wird der sogenannte Mersenne-Twister verwendet.
     Dieser wurde mit der Absicht entwickelt die Schwachstellen der LCGs lösen, unter anderem,
     indem er eine sehr hohe Periode von $p=2^{19937}-1$ besitzt und Floats mit einer Genauigkeit von 53 Bit erzeugt.
@@ -92,7 +93,7 @@
     Sie wird unter anderem für Lotterien und Online-Spiele, aber auch für diverse wissenschaftliche
     Anwendungen verwendet.
     Hierbei behaupten die Entwickler, der Generator würde mithilfe von atmosphärischem
-    Rauschen echte Zufallszahlen erstellen, die besser sind als die von Computer erstellten Pseudo-Zufallszahlen~\cite{random-org}.
+    Rauschen echte Zufallszahlen erstellen, die besser sind als die von Computer erstellten Pseudozufallszahlen~\cite{random-org}.
 
     \vfill
 
@@ -101,10 +102,10 @@
     Bei diesem werden Tupel gebildet, welche man als Punkt im dreidimensionalen Raum interpretiert und darstellt.
     Ziel ist dabei eine gleichmäßig verteilte Menge von Tupeln.
     Wenn sich jedoch Muster erkennen lassen kann man direkt festhalten, dass ein stochastische Abhängigkeit vorherrscht~\cite{spektraltest}.
-    \\ \\
+    \\
     In diesem Projekt wurden zur Veranschaulichung 2er-Tupel und 3er-Tupel gebildet,
     welche in einem XY-Diagramm beziehungsweise XYZ-Diagramm dargestellt sind.
-    \\ \\
+    \\
     Der Spektraltest wurde dabei auf jeden der vier verschiedene Generatoren angewandt.
     Um einen guten Vergleich der Generatoren zu ermöglichen, geben alle Generatoren Fließkommazahlen zwischen 0 und 1 zurück.
     Bei jedem Generator wurden 100.000 Zufallszahlen abgerufen, jedoch ist man bei Random.org beschränkt,
@@ -223,13 +224,13 @@
 
     \section{Fazit}\label{sec:fazit}
     Die Ergebnisse zeigen, dass der LCG kein guter Generator ist,
-    da in der 3D- und 2D-Darstellung Muster zu erkennen sind und somit ein kausaler Zusammenhang zwischen den erzeugten Tupeln besteht.
-    \\ \\
+    da in der 2D- und 3D-Darstellung Muster zu erkennen sind und somit ein kausaler Zusammenhang zwischen den erzeugten Tupeln besteht.
+    \\
     Die Tupel in den Zufallsgeneratoren der Python-Bibliotheken sind dagegen sehr gleichmäßig verteilt,
     man könnte daher schlussfolgern, dass es sich um zufällig erstellte Zahlen handelt.
     Da die Bibliotheken jedoch wie beschrieben auf dem Mersenne-Twister basieren, bei welchem man erst ab einer sehr hohen Periode Kausalitäten erkennen würde,
     können die Generatoren lediglich als "gute" Pseudozufallszahlengeneratoren bezeichnet werden.
-    \\ \\
+    \\
     Die Tupel vom Generator der Seite Random.org sind ebenfalls sehr gleichmäßig verteilt und es lassen sich keine Muster erkennen.
     Man bräuchte allerdings eine viel größere Menge von Zufallszahlen, um zu beweisen, dass der Generator "echte" Zufallszahlen erzeugt.
     Durch die Angaben der Entwickler lässt sich aber zusammenfassend festhalten, dass dies der beste Generator ist.
