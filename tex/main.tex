@@ -77,7 +77,7 @@
 
     \noindent
     Diese können beliebig gewählt werden, jedoch sehen nur mit bestimmten Werten die Zufallsergebnisse auch "zufällig" aus.
-    Für unser Projekt haben wir die Werte des TI-59 von Texas Instruments gewählt~\cite{lcg}:
+    In diesem Projekt wurden die Werte des TI-59 von Texas Instruments gewählt~\cite{lcg}:
 
     \begin{align*}
     x_{n+1} = (24298 * 0 + 99991) \bmod 199017
@@ -106,14 +106,14 @@
 
     \section{Durchführung}\label{sec:Durchfuehrung}
     Um die Generatoren auf ihre Zufälligkeit zu überprüfen wurde der Spektraltest verwendet.
-    Bei diesem werden Tupel gebildet, welche man als Punkt im dreidimensionalen Raum interpretiert und darstellt.
+    Bei diesem werden Tupel gebildet, welche man als Punkt im mehrdimensionalen Raum interpretiert und darstellt.
     Ziel ist dabei eine gleichmäßig verteilte Menge von Tupeln.
     Wenn sich jedoch Muster erkennen lassen, kann man direkt festhalten, dass ein stochastische Abhängigkeit vorherrscht~\cite{spektraltest}.
     \\
     In diesem Projekt wurden zur Veranschaulichung 2er-Tupel und 3er-Tupel gebildet,
     welche in einem XY-Diagramm beziehungsweise XYZ-Diagramm dargestellt sind.
     \\
-    Der Spektraltest wurde dabei auf jeden der vier verschiedene Generatoren angewandt.
+    Der Spektraltest wurde dabei auf jeden der vier verschiedenen Generatoren angewandt.
     Um einen guten Vergleich der Generatoren zu ermöglichen, geben alle Generatoren Fließkommazahlen zwischen 0 und 1 zurück.
     Bei jedem Generator wurden 100.000 Zufallszahlen abgerufen, jedoch ist man bei Random.org beschränkt,
     weswegen dort nur 10.000 Zufallszahlen abgerufen wurden.
