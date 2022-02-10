@@ -68,13 +68,19 @@
     die Zufallszahlen in den einzelnen Generatoren erzeugt werden.
 
     \subsection{Der LCG}\label{subsec:der-lcg}
-    Der LCG ist ein einfacher Generator, welcher mit den Startwerten $a$, $x_n$, $c$, $m$ aufgerufen wird.
-    $a$ ist der Faktor, $n$ der Startwert, $c$ ist das Inkrement und $m$ der Modulus.
-    Diese können beliebig gewählt werden, jedoch sehen nur mit bestimmten Werten die Zufallsergebnisse auch "zufällig" aus.
-    Für unser Projekt haben wir die Werte des TI-59 von Texas Instruments gewählt~\cite{lcg}.
+    Der LCG ist ein einfacher deterministischer Generator, welcher mit den Startwerten $a$, $x_n$, $c$, $m$ aufgerufen wird.
+    $a$ ist der Faktor, $x_n$ der Startwert, $c$ ist das Inkrement und $m$ der Modulus:
 
     \begin{align*}
-    x_n = (a * x_n + c) \bmod m
+    x_{n+1} = (a * x_n + c) \bmod m
+    \end{align*}
+
+    \noindent
+    Diese können beliebig gewählt werden, jedoch sehen nur mit bestimmten Werten die Zufallsergebnisse auch "zufällig" aus.
+    Für unser Projekt haben wir die Werte des TI-59 von Texas Instruments gewählt~\cite{lcg}:
+
+    \begin{align*}
+    x_{n+1} = (24298 * 0 + 99991) \bmod 199017
     \end{align*}
 
     \subsection{Die Zufallsgeneratoren von Python}\label{subsec:die-zufallsgeneratoren-von-python}
@@ -92,8 +98,9 @@
     Random.org ist eine Internetseite, die sich darauf spezialisiert hat, Zufallszahlen zu erzeugen.
     Sie wird unter anderem für Lotterien und Online-Spiele, aber auch für diverse wissenschaftliche
     Anwendungen verwendet.
-    Hierbei behaupten die Entwickler, der Generator würde mithilfe von atmosphärischem
-    Rauschen echte Zufallszahlen erstellen, die besser sind als die von Computer erstellten Pseudozufallszahlen~\cite{random-org}.
+    Hierbei behaupten die Entwickler, der Generator würde mithilfe von atmosphärischem Rauschen echte Zufallszahlen erstellen,
+    die besser sind als die von Computer erstellten Pseudozufallszahlen.
+    Die Behauptungen wurden von zwei wissenschaftlichen Untersuchungen bestätigt~\cite{random-org}.
 
     \vfill
 
@@ -101,7 +108,7 @@
     Um die Generatoren auf ihre Zufälligkeit zu überprüfen wurde der Spektraltest verwendet.
     Bei diesem werden Tupel gebildet, welche man als Punkt im dreidimensionalen Raum interpretiert und darstellt.
     Ziel ist dabei eine gleichmäßig verteilte Menge von Tupeln.
-    Wenn sich jedoch Muster erkennen lassen kann man direkt festhalten, dass ein stochastische Abhängigkeit vorherrscht~\cite{spektraltest}.
+    Wenn sich jedoch Muster erkennen lassen, kann man direkt festhalten, dass ein stochastische Abhängigkeit vorherrscht~\cite{spektraltest}.
     \\
     In diesem Projekt wurden zur Veranschaulichung 2er-Tupel und 3er-Tupel gebildet,
     welche in einem XY-Diagramm beziehungsweise XYZ-Diagramm dargestellt sind.
@@ -228,12 +235,13 @@
     \\
     Die Tupel in den Zufallsgeneratoren der Python-Bibliotheken sind dagegen sehr gleichmäßig verteilt,
     man könnte daher schlussfolgern, dass es sich um zufällig erstellte Zahlen handelt.
-    Da die Bibliotheken jedoch wie beschrieben auf dem Mersenne-Twister basieren, bei welchem man erst ab einer sehr hohen Periode Kausalitäten erkennen würde,
+    Da die Bibliotheken jedoch wie beschrieben auf dem Mersenne-Twister basieren,
+    bei welchem man erst ab einer sehr hohen Anzahl von Zufallszahlen Kausalitäten erkennen würde,
     können die Generatoren lediglich als "gute" Pseudozufallszahlengeneratoren bezeichnet werden.
     \\
     Die Tupel vom Generator der Seite Random.org sind ebenfalls sehr gleichmäßig verteilt und es lassen sich keine Muster erkennen.
     Man bräuchte allerdings eine viel größere Menge von Zufallszahlen, um zu beweisen, dass der Generator "echte" Zufallszahlen erzeugt.
-    Durch die Angaben der Entwickler lässt sich aber zusammenfassend festhalten, dass dies der beste Generator ist.
+    Durch die wissenschaftlichen Arbeiten lässt sich aber zusammenfassend festhalten, dass dies der beste Generator ist.
 
 
     \vfill
