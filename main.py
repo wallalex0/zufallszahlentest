@@ -7,7 +7,7 @@ import requests
 
 def get_user_mail():
     # Please paste here your email address in order to use the random.org api
-    return "alexander dot aw64 at gmail dot com"
+    return "your mail here"
 
 
 # Create a  3D plot with random numbers
