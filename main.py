@@ -5,9 +5,8 @@ import random
 import requests
 
 
-def get_user_mail():
-    # Please paste here your email address in order to use the random.org api
-    return "your mail here"
+# Please paste here your email address in order to use the random.org api
+mail = "your mail here"
 
 
 # Create a  3D plot with random numbers
@@ -207,13 +206,13 @@ def generator_lcg(amount):
 
 # To automate random.org requests you need to check quota
 def quota_exceeded_random_org():
-    if get_user_mail() == "":
+    if mail == "":
         print("No user mail provided, can't use the random.org api quota checker.")
         return True
 
     print("Checking quota of random.org.")
     try:
-        header = {'User-Agent': f'{get_user_mail()}'}
+        header = {'User-Agent': f'{mail}'}
         request = requests.get(url=f"https://www.random.org/quota/?format=plain", headers=header)
         if request.status_code == 200:
             response = int(request.text)
@@ -235,7 +234,7 @@ def quota_exceeded_random_org():
 def generator_random_org(amount):
     results = []
 
-    if get_user_mail() == "":
+    if mail == "":
         print("No user mail provided, can't use the random.org api.")
         return None
 
@@ -250,7 +249,7 @@ def generator_random_org(amount):
 
     print(f"Getting {amount} random numbers from random.org.")
     try:
-        header = {'User-Agent': f'{get_user_mail()}'}
+        header = {'User-Agent': f'{mail}'}
         request = requests.get(
             url=f"https://www.random.org/integers/?num={amount}&min=0&max=1000000000&col=1&base=10&format=plain&rnd=new",
             headers=header)
